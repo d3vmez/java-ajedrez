@@ -8,7 +8,7 @@ import javax.swing.JButton;
 
 import main.java.piezas.Pieza;
 
-public class Casilla extends JButton implements ActionListener {
+public class Casilla extends JButton{
 
 	private static final long serialVersionUID = 1L;
 	private int posicionX;
@@ -46,23 +46,5 @@ public class Casilla extends JButton implements ActionListener {
 	public void setPieza(Pieza pieza) {
 		this.pieza = pieza;
 	}
-
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		if(e.getSource() == this) {
-			if(this.activada == false) {
-			this.setBackground(Color.green);
-			System.out.println(this.posicionX);
-			this.activada = true;
-			}else {
-				this.setBackground(Color.RED);
-			}
-		}
-		
-	}
-	
-	
-	
 	
 }
