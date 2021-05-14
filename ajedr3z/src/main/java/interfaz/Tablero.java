@@ -1,7 +1,6 @@
 package main.java.interfaz;
 
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -19,8 +18,9 @@ public class Tablero extends JPanel implements ActionListener{
 	private Pieza piezaTemporal;
 	private Casilla casillaTemporal;
 	private Color colorTemporal;
+	
 	public Tablero() {
-		this.setSize(600, 600);
+		this.setBounds(50, 30, 600, 600);
 		this.setBackground(Color.GRAY);
 		this.setLayout(new GridLayout(8,8));
 		

@@ -1,8 +1,6 @@
 package main.java.interfaz;
 
-import java.awt.Color;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+
 
 import javax.swing.JButton;
 
@@ -14,12 +12,12 @@ public class Casilla extends JButton{
 	private int posicionX;
 	private int posicionY;
 	private Pieza pieza;
-	private boolean activada;
+
 	
 	public Casilla(int posicionX, int posicionY) {
 		this.posicionX = posicionX;
 		this.posicionY = posicionY;
-		this.activada = false;
+
 
 	}
 
