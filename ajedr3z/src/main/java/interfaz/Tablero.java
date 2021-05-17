@@ -170,6 +170,13 @@ public class Tablero extends JPanel implements ActionListener{
 				dibujarMovimientosValidos(c.getPieza());
 				
 			}
+			
+			if(c.getPieza() instanceof Rey) {
+				System.out.println("soy alfil en la casilla"+c.getPieza().getPosicionX()+c.getPieza().getPosicionY());
+
+				dibujarMovimientosValidos(c.getPieza());
+				
+			}
 			this.casillaTemporal= c;
 			this.casillaTemporal.setBackground(Color.GREEN);
 			this.piezaTemporal = c.getPieza();
