@@ -2,8 +2,10 @@ package main.java.interfaz;
 
 import java.awt.Color;
 import java.awt.GridLayout;
+import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
@@ -15,9 +17,10 @@ public class Tablero extends JPanel implements ActionListener{
 	
 	private static final long serialVersionUID = 1L;
 	private Casilla[][] casillas = new Casilla[8][8];
+	
 	private Pieza piezaTemporal;
 	private Casilla casillaTemporal;
-	private Color colorTemporal;
+
 	
 	public Tablero() {
 		this.setBounds(50, 30, 600, 600);
@@ -122,15 +125,37 @@ public class Tablero extends JPanel implements ActionListener{
 			
 		}
 		
-
-	}
+	} //Fin constructor
+	
+	/**
+	 * Evento cuando se hace click sobre una casilla del tablero
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		Casilla c = (Casilla) e.getSource();
 		
 		if(c.getPieza() != null) {
-			this.colorTemporal = c.getBackground();
+			if(c.getPieza() instanceof Peon) {
+				System.out.println("soy peon en la casilla"+c.getPieza().getPosicionX()+c.getPieza().getPosicionY());
+
+				dibujarMovimientosValidos(c.getPieza());
+				
+			}
+			
+			if(c.getPieza() instanceof Torre) {
+				System.out.println("soy torre en la casilla"+c.getPieza().getPosicionX()+c.getPieza().getPosicionY());
+
+				dibujarMovimientosValidos(c.getPieza());
+				
+			}
+			
+			if(c.getPieza() instanceof Alfil) {
+				System.out.println("soy alfil en la casilla"+c.getPieza().getPosicionX()+c.getPieza().getPosicionY());
+
+				dibujarMovimientosValidos(c.getPieza());
+				
+			}
 			this.casillaTemporal= c;
 			this.casillaTemporal.setBackground(Color.GREEN);
 			this.piezaTemporal = c.getPieza();
@@ -139,16 +164,60 @@ public class Tablero extends JPanel implements ActionListener{
 		}else {
 			System.out.println("no tengo pieza");
 			if(c != null) {
+				
+				resetearColorCasillas();
 				c.setPieza(this.piezaTemporal);
 				c.setIcon(this.piezaTemporal.getIcono());
+				c.getPieza().setPosicionX(c.getPosicionX());
+				c.getPieza().setPosicionY(c.getPosicionY());
 				this.casillaTemporal.setPieza(null);
-				this.casillaTemporal.setBackground(colorTemporal);
 				this.casillaTemporal.setIcon(null);
-
+				
 			System.out.println(this.piezaTemporal.getPosicionX());
 			System.out.println(this.piezaTemporal.getPosicionY());
 			}
 		}
+	}
+	
+	/**
+	 * Función para que las casillas del tablero retomen su color original
+	 */
+	private void resetearColorCasillas() {
+		int contadorCasillas = 0;
+		
+		for (int i = 0; i < 8; i++) {
+			
+			for (int j = 0; j < 8; j++) {
+			
+				if( contadorCasillas%2 == 0) {
+					
+					this.casillas[i][j].setBackground(Color.WHITE);
+					
+				} else {
+					
+					this.casillas[i][j].setBackground(Color.GRAY);
+					
+				}
+				
+				contadorCasillas ++;
+			}
+			contadorCasillas ++;
+		}
+	}
+	
+	/**
+	 * 
+	 * @param Pieza pieza, se pasa como argumento la pieza seleccionada del tablero
+	 */
+	private void dibujarMovimientosValidos(Pieza pieza) {
+		ArrayList<Point> mov = pieza.mostrarMovimientos(casillas);
+		
+		for (Point point : mov) {
+			int x = (int) point.getX();
+			int y = (int) point.getY();
+			casillas[x][y].setBackground(Color.blue);
+		}
+		
 	}
 	
 }

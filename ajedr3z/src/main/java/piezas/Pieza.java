@@ -1,12 +1,19 @@
 package main.java.piezas;
 
 
+import main.java.interfaz.Casilla;
+
+import java.awt.Point;
+import java.util.ArrayList;
+
 import javax.swing.ImageIcon;
 
 public abstract class Pieza {
 	
 	private ImageIcon icono;
 	public static String directorio = System.getProperty("user.dir")+"//src//imagenes//";
+	protected static final String NEGRA = "negra";
+	protected static final String BLANCA = "blanca";
 	
 	private String color;
 	private int peso;
@@ -17,6 +24,14 @@ public abstract class Pieza {
 		this.icono = icono;
 		this.posicionX = posicionX;
 		this.posicionY = posicionY;
+		
+		if(this.posicionX == 0 || this.posicionX == 1) {
+			this.color="negra";
+		}
+		
+		if(this.posicionX == 6 || this.posicionX == 7) {
+			this.color="blanca";
+		}
 	}
 	
 
@@ -69,6 +84,12 @@ public abstract class Pieza {
 	}
 	
 	
+	/**
+	 * 
+	 * @param Matriz de las casillas, donde se encuentra la poscicion de cada una de las piezas
+	 * @return casillas dónde se podrá mover la pieza
+	 */
+	public abstract  ArrayList<Point> mostrarMovimientos(Casilla [][] casillas);
 	
 	
 	
