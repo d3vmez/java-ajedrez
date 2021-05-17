@@ -21,77 +21,76 @@ public class Peon extends Pieza {
 
 		ArrayList<Point> movimientosPosibles = new ArrayList<Point>();
 
-		if (this.getColor().equals(Pieza.NEGRA)) {
+		// posición de la casilla actual
+		int x = this.getPosicionX();
+		int y = this.getPosicionY();
+
+		if (this.esNegra()) {
 
 			System.out.println("soy negra");
-			if (casillas[getPosicionX() + 1][getPosicionY()].getPieza() == null) {
-				Point posicion = new Point(getPosicionX() + 1, getPosicionY());
+			if (casillas[x + 1][y].getPieza() == null) {
+				Point posicion = new Point(x + 1, y);
 				movimientosPosibles.add(posicion);
 
-				if (casillas[getPosicionX() + 2][getPosicionY()].getPieza() == null && this.haSidoMovida == false) {
-					posicion = new Point(getPosicionX() + 2, getPosicionY());
+				if (casillas[x + 2][y].getPieza() == null && this.haSidoMovida == false) {
+					posicion = new Point(x + 2, y);
 					movimientosPosibles.add(posicion);
 				}
 
 				this.haSidoMovida = true;
 			}
 
-			if (getPosicionY() + 1 < casillas.length ) {
+			if (y + 1 < casillas.length) {
 				System.out.println("derecha");
-				if (casillas[getPosicionX() + 1][getPosicionY() + 1].getPieza() != null) {
-					Point posicion = new Point(getPosicionX() + 1, getPosicionY() + 1);
+				if (casillas[x + 1][y + 1].getPieza() != null && casillas[x + 1][y + 1].getPieza().esBlanca() ) {
+					Point posicion = new Point(x + 1, y + 1);
 					movimientosPosibles.add(posicion);
 					this.haSidoMovida = true;
 				}
 			}
-			
-			if (getPosicionY() - 1 >= 0 ) {
+
+			if (y - 1 >= 0) {
 				System.out.println("izquierda");
-				if (casillas[getPosicionX() + 1][getPosicionY() - 1].getPieza() != null) {
-					Point posicion = new Point(getPosicionX() + 1, getPosicionY() - 1);
+				if (casillas[x + 1][y - 1].getPieza() != null && casillas[x + 1][y - 1].getPieza().esBlanca() ) {
+					Point posicion = new Point(x + 1, y - 1);
 					movimientosPosibles.add(posicion);
 					this.haSidoMovida = true;
 				}
 			}
-
-			
-
 		}
 
-		System.out.println("soy peon en la casilla" + this.getPosicionX() + this.getPosicionY());
-
-		if (this.getColor().equals(Pieza.BLANCA)) {
+		if (this.esBlanca()) {
 			System.out.println("soy blanca");
-			if (casillas[getPosicionX() - 1][getPosicionY()].getPieza() == null) {
-				Point posicion = new Point(getPosicionX() - 1, getPosicionY());
+			if (casillas[x - 1][y].getPieza() == null) {
+				Point posicion = new Point(x - 1, y);
 				movimientosPosibles.add(posicion);
 
-				if (casillas[getPosicionX() - 2][getPosicionY()].getPieza() == null && this.haSidoMovida == false) {
-					posicion = new Point(getPosicionX() - 2, getPosicionY());
+				if (casillas[x - 2][y].getPieza() == null && this.haSidoMovida == false) {
+					posicion = new Point(x - 2, y);
 					movimientosPosibles.add(posicion);
 				}
 
 				this.haSidoMovida = true;
 			}
 
-			if (getPosicionY() + 1 < casillas.length ) {
+			if (y + 1 < casillas.length) {
 				System.out.println("soy derecha");
-				if (casillas[getPosicionX() - 1][getPosicionY() + 1].getPieza() != null) {
-					Point posicion = new Point(getPosicionX() - 1, getPosicionY() + 1);
+				if (casillas[x - 1][y + 1].getPieza() != null && casillas[x - 1][y + 1].getPieza().esNegra() ) {
+					Point posicion = new Point(x - 1, y + 1);
 					movimientosPosibles.add(posicion);
 					this.haSidoMovida = true;
 				}
 			}
-			
-			if(getPosicionY() - 1 >= 0) {
+
+			if (y - 1 >= 0) {
 				System.out.println("soy izquierda");
-				if (casillas[getPosicionX() - 1][getPosicionY() - 1].getPieza() != null) {
-					Point posicion = new Point(getPosicionX() - 1, getPosicionY() - 1);
+				if (casillas[x - 1][y - 1].getPieza() != null && casillas[x - 1][y - 1].getPieza().esNegra() ) {
+					Point posicion = new Point(x - 1, y - 1);
 					movimientosPosibles.add(posicion);
 					this.haSidoMovida = true;
 				}
 			}
-			
+
 		}
 		return movimientosPosibles;
 	}

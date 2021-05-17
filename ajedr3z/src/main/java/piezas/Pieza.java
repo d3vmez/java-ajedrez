@@ -83,6 +83,28 @@ public abstract class Pieza {
 		this.posicionY = posicionY;
 	}
 	
+	/*
+	 * @return Devuelve true si la pieza es blanca
+	 */
+	public boolean esBlanca() {
+		if(	this.color.equals(Pieza.BLANCA)) {
+			return true;
+		}else {
+			return false;
+		}
+	}
+	
+	/*
+	 * @return Devuelve true si la pieza es negra
+	 */
+	public boolean esNegra() {
+		if(	this.color.equals(Pieza.NEGRA)) {
+			return true;
+		}else {
+			return false;
+		}
+	}
+	
 	
 	/**
 	 * 

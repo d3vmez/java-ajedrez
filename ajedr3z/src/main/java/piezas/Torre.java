@@ -7,141 +7,151 @@ import javax.swing.ImageIcon;
 
 import main.java.interfaz.Casilla;
 
-public class Torre extends Pieza{
+public class Torre extends Pieza {
 
 	public Torre(ImageIcon icono, int posicionX, int posicionY) {
 		super(icono, posicionX, posicionY);
-		
+
 	}
 
 	@Override
 	public ArrayList<Point> mostrarMovimientos(Casilla[][] casillas) {
-		
+
 		ArrayList<Point> movimientosPosibles = new ArrayList<Point>();
 		Point posicion = null;
+
+		// posición de la casilla actual
 		int posicionX = getPosicionX();
 		int posicionY = getPosicionY();
 
-		if(this.getColor().equals(Pieza.BLANCA)) {
 		// moviemiento horizontal
-		for (int i = posicionY+1 ; i < casillas.length; i++) {
-			if(casillas[posicionX][i].getPieza() == null) {
-				posicion = new  Point(posicionX,i);
+		// se itera sobre las columnas(y) de la derecha, posicionX fija ya que siempre
+		// estaremos en la
+		// misma fila
+		for (int y = posicionY + 1; y < casillas.length; y++) {
+			if (casillas[posicionX][y].getPieza() == null) {
+				posicion = new Point(posicionX, y);
 				movimientosPosibles.add(posicion);
-			}else if(casillas[posicionX][i].getPieza().getColor() == Pieza.NEGRA ) {
-				posicion = new  Point(posicionX,i);
-				movimientosPosibles.add(posicion);
-				break;
-			}else if(casillas[posicionX][i].getPieza().getColor() == Pieza.BLANCA ) {
-				break;
 			}
-		}
-		
-		for (int i = posicionY-1 ; i>= 0; i--) {
-			if(casillas[posicionX][i].getPieza() == null) {
-				posicion = new  Point(posicionX,i);
-				movimientosPosibles.add(posicion);
-			}else if(casillas[posicionX][i].getPieza().getColor() == Pieza.NEGRA ) {
-				posicion = new  Point(posicionX,i);
-				movimientosPosibles.add(posicion);
-				break;
-			}else if(casillas[posicionX][i].getPieza().getColor() == Pieza.BLANCA ) {
-				break;
-			}
-		}
-		
-		// movimiento vertical
-		for (int i = posicionX+1 ; i < casillas.length; i++) {
-			if(casillas[i][posicionY].getPieza() == null) {
-				posicion = new  Point(i,posicionY);
-				movimientosPosibles.add(posicion);
-			}else if(casillas[i][posicionY].getPieza().getColor() == Pieza.NEGRA) {
-				posicion = new  Point(i,posicionY);
-				movimientosPosibles.add(posicion);
-				break;
-			}else if(casillas[i][posicionY].getPieza().getColor() == Pieza.BLANCA ) {
 
-				break;
-			}
-		}
-		
-		for (int i = posicionX-1 ; i >= 0; i--) {
-			if(casillas[i][posicionY].getPieza() == null) {
-				posicion = new  Point(i,posicionY);
-				movimientosPosibles.add(posicion);
-			}else if(casillas[i][posicionY].getPieza().getColor() == Pieza.NEGRA ) {
-				posicion = new  Point(i,posicionY);
-				movimientosPosibles.add(posicion);
-				break;
-			}else if(casillas[i][posicionY].getPieza().getColor() == Pieza.BLANCA ) {
-				break;
-			}
-		}
-		
-		}
-		
-		if(this.getColor().equals(Pieza.NEGRA)) {
-		// moviemiento horizontal
-		for (int i = posicionY+1 ; i < casillas.length; i++) {
-			if(casillas[posicionX][i].getPieza() == null) {
-				posicion = new  Point(posicionX,i);
-				movimientosPosibles.add(posicion);
-			}else if(casillas[posicionX][i].getPieza().getColor().equals(Pieza.BLANCA)) {
-				posicion = new  Point(posicionX,i);
-				movimientosPosibles.add(posicion);
-				break;
-			}else if(casillas[posicionX][i].getPieza().getColor() == Pieza.NEGRA ) {
-				break;
-			}
-		}
-		
-		for (int i = posicionY-1 ; i>= 0; i--) {
-			if(casillas[posicionX][i].getPieza() == null) {
-				posicion = new  Point(posicionX,i);
-				movimientosPosibles.add(posicion);
-			}else if(casillas[posicionX][i].getPieza().getColor() == Pieza.BLANCA ) {
-				posicion = new  Point(posicionX,i);
-				movimientosPosibles.add(posicion);
-				break;
-			}else if(casillas[posicionX][i].getPieza().getColor() == Pieza.NEGRA ) {
-				break;
-			}
-		}
-		
-		// movimiento vertical
-		for (int i = posicionX+1 ; i < casillas.length; i++) {
-			if(casillas[i][posicionY].getPieza() == null) {
-				posicion = new  Point(i,posicionY);
-				movimientosPosibles.add(posicion);
-			}else if(casillas[i][posicionY].getPieza().getColor() == Pieza.BLANCA) {
-				posicion = new  Point(i,posicionY);
-				movimientosPosibles.add(posicion);
-				break;
-			}else if(casillas[i][posicionY].getPieza().getColor() == Pieza.NEGRA ) {
+			else if (this.esBlanca()) {
 
-				break;
+				if (casillas[posicionX][y].getPieza().esNegra()) {
+					posicion = new Point(posicionX, y);
+					movimientosPosibles.add(posicion);
+					break;
+				} else if (casillas[posicionX][y].getPieza().esBlanca()) {
+					break;
+				}
+			}
+
+			else if (this.esNegra()) {
+				if (casillas[posicionX][y].getPieza().esBlanca()) {
+					posicion = new Point(posicionX, y);
+					movimientosPosibles.add(posicion);
+					break;
+				} else if (casillas[posicionX][y].getPieza().esNegra()) {
+					break;
+				}
+			}
+
+		}
+
+		// se itera sobre las columnas(y) de la izquierda, posicionX fija ya que siempre
+		// estaremos en la
+		// misma fila
+		for (int y = posicionY - 1; y >= 0; y--) {
+			if (casillas[posicionX][y].getPieza() == null) {
+				posicion = new Point(posicionX, y);
+				movimientosPosibles.add(posicion);
+			} else if (this.esBlanca()) {
+				if (casillas[posicionX][y].getPieza().esNegra()) {
+					posicion = new Point(posicionX, y);
+					movimientosPosibles.add(posicion);
+					break;
+				} else if (casillas[posicionX][y].getPieza().esBlanca()) {
+					break;
+				}
+
+			}
+
+			else if (this.esNegra()) {
+				if (casillas[posicionX][y].getPieza().esBlanca()) {
+					posicion = new Point(posicionX, y);
+					movimientosPosibles.add(posicion);
+					break;
+				} else if (casillas[posicionX][y].getPieza().esNegra()) {
+					break;
+				}
 			}
 		}
-		
-		for (int i = posicionX-1 ; i >= 0; i--) {
-			if(casillas[i][posicionY].getPieza() == null) {
-				posicion = new  Point(i,posicionY);
+
+		// movimiento vertical
+		// se itera sobre las filas(x) de arriba hacia abajo, posicionY fija ya que siempre
+		// estaremos en la
+		// misma columna
+		for (int x = posicionX + 1; x < casillas.length; x++) {
+			if (casillas[x][posicionY].getPieza() == null) {
+				posicion = new Point(x, posicionY);
 				movimientosPosibles.add(posicion);
-			}else if(casillas[i][posicionY].getPieza().getColor() == Pieza.BLANCA ) {
-				posicion = new  Point(i,posicionY);
-				movimientosPosibles.add(posicion);
-				break;
-			}else if(casillas[i][posicionY].getPieza().getColor() == Pieza.NEGRA ) {
-				break;
+			} else if (this.esBlanca()) {
+
+				if (casillas[x][posicionY].getPieza().esNegra()) {
+					posicion = new Point(x, posicionY);
+					movimientosPosibles.add(posicion);
+					break;
+				} else if (casillas[x][posicionY].getPieza().esBlanca()) {
+
+					break;
+				}
+			}
+
+			else if (this.esNegra()) {
+				if (casillas[x][posicionY].getPieza().esBlanca()) {
+					posicion = new Point(x, posicionY);
+					movimientosPosibles.add(posicion);
+					break;
+				} else if (casillas[x][posicionY].getPieza().esNegra()) {
+
+					break;
+				}
 			}
 		}
-		
+
+		// movimiento vertical
+		// se itera sobre las filas(x) de abajo hacia arriba, posicionY fija ya que siempre
+		// estaremos en la
+		// misma columna
+		for (int x = posicionX - 1; x >= 0; x--) {
+
+			if (casillas[x][posicionY].getPieza() == null) {
+				posicion = new Point(x, posicionY);
+				movimientosPosibles.add(posicion);
+			} else if (this.esBlanca()) {
+
+				if (casillas[x][posicionY].getPieza().esNegra()) {
+					posicion = new Point(x, posicionY);
+					movimientosPosibles.add(posicion);
+					break;
+				} else if (casillas[x][posicionY].getPieza().esBlanca()) {
+
+					break;
+				}
+			}
+
+			else if (this.esNegra()) {
+				if (casillas[x][posicionY].getPieza().esBlanca()) {
+					posicion = new Point(x, posicionY);
+					movimientosPosibles.add(posicion);
+					break;
+				} else if (casillas[x][posicionY].getPieza().esNegra()) {
+
+					break;
+				}
+			}
 		}
-		
+
 		return movimientosPosibles;
-		
 	}
 
-
-	
 }
