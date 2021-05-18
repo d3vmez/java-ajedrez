@@ -26,7 +26,7 @@ public class Rey extends Pieza{
 
 		// Para guardar los movimientos posibles del rey
 		@SuppressWarnings("serial")
-		ArrayList<Point> movimientosCaballo = new ArrayList<Point>() {
+		ArrayList<Point> movimientosRey = new ArrayList<Point>() {
 			{
 				add(new Point(posicionX + 0, posicionY + 1));
 				add(new Point(posicionX + 0, posicionY - 1));
@@ -39,7 +39,7 @@ public class Rey extends Pieza{
 			}
 		};
 
-		for (Point point : movimientosCaballo) {
+		for (Point point : movimientosRey) {
 
 			int x = (int) point.getX();
 			int y = (int) point.getY();
@@ -73,6 +73,8 @@ public class Rey extends Pieza{
 
 		return movimientosPosibles;
 	}
+	
+
 
 
 

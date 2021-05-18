@@ -37,7 +37,7 @@ public class Peon extends Pieza {
 					movimientosPosibles.add(posicion);
 				}
 
-				this.haSidoMovida = true;
+				
 			}
 
 			if (y + 1 < casillas.length) {
@@ -45,7 +45,7 @@ public class Peon extends Pieza {
 				if (casillas[x + 1][y + 1].getPieza() != null && casillas[x + 1][y + 1].getPieza().esBlanca() ) {
 					Point posicion = new Point(x + 1, y + 1);
 					movimientosPosibles.add(posicion);
-					this.haSidoMovida = true;
+					
 				}
 			}
 
@@ -54,7 +54,7 @@ public class Peon extends Pieza {
 				if (casillas[x + 1][y - 1].getPieza() != null && casillas[x + 1][y - 1].getPieza().esBlanca() ) {
 					Point posicion = new Point(x + 1, y - 1);
 					movimientosPosibles.add(posicion);
-					this.haSidoMovida = true;
+					
 				}
 			}
 		}
@@ -70,7 +70,7 @@ public class Peon extends Pieza {
 					movimientosPosibles.add(posicion);
 				}
 
-				this.haSidoMovida = true;
+				
 			}
 
 			if (y + 1 < casillas.length) {
@@ -78,7 +78,7 @@ public class Peon extends Pieza {
 				if (casillas[x - 1][y + 1].getPieza() != null && casillas[x - 1][y + 1].getPieza().esNegra() ) {
 					Point posicion = new Point(x - 1, y + 1);
 					movimientosPosibles.add(posicion);
-					this.haSidoMovida = true;
+					
 				}
 			}
 
@@ -87,12 +87,16 @@ public class Peon extends Pieza {
 				if (casillas[x - 1][y - 1].getPieza() != null && casillas[x - 1][y - 1].getPieza().esNegra() ) {
 					Point posicion = new Point(x - 1, y - 1);
 					movimientosPosibles.add(posicion);
-					this.haSidoMovida = true;
+				
 				}
 			}
 
 		}
 		return movimientosPosibles;
+	}
+	
+	public void seHaMovidoPeon() {
+		this.haSidoMovida = true;
 	}
 
 }
