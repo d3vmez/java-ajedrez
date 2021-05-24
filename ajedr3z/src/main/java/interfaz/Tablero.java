@@ -24,6 +24,11 @@ public class Tablero extends JPanel implements ActionListener {
 	private ArrayList<Point> casillasAmenazadas = null;
 
 	private String turno = Pieza.BLANCA;
+	
+	private Historial historial;
+	private Cronometro cronometro;
+	
+
 
 	public Tablero() {
 		this.setBounds(50, 30, 600, 600);
@@ -140,8 +145,10 @@ public class Tablero extends JPanel implements ActionListener {
 		// Cuando se pulsa una casilla se resetea el color del tablero
 		resetearColorCasillas();
 
-		// Cambio turno
-;
+		// Cronometro
+		
+		//cronometro.empezarBlancas();
+
 
 		try {
 			
@@ -270,10 +277,14 @@ public class Tablero extends JPanel implements ActionListener {
 					System.out.println(this.piezaTemporal.getPosicionY());
 					
 					//escribir al jlist y bd
-					
-					
-					
 
+					String nombre = this.piezaTemporal.getIcono().getDescription();
+					String jugada = String.valueOf(this.piezaTemporal.getPosicionX()+" "+this.piezaTemporal.getPosicionY());
+					historial.modeloLista.addElement(jugada);
+					
+					//cronometro
+	
+					
 					// Cambio de turno
 					if (this.turno.equals(Pieza.BLANCA)) {
 						this.turno = Pieza.NEGRA;

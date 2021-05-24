@@ -21,6 +21,9 @@ public class Interfaz extends JFrame{
 		
 		Historial historial = new Historial();
 		this.add(historial);
+		
+		Cronometro cronometro = new Cronometro();
+		this.add(cronometro);
 	}
 	
 	public void centrarVentana() {
