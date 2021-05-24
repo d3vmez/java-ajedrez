@@ -18,6 +18,9 @@ public class Interfaz extends JFrame{
 		
 		Tablero tablero = new Tablero();
 		this.add(tablero);
+		
+		Historial historial = new Historial();
+		this.add(historial);
 	}
 	
 	public void centrarVentana() {

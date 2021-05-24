@@ -8,6 +8,8 @@ import javax.swing.ImageIcon;
 import main.java.interfaz.Casilla;
 
 public class Rey extends Pieza{
+	
+	private boolean estaJaqueado;
 
 	public Rey(ImageIcon icono, int posicionX, int posicionY) {
 		super(icono, posicionX, posicionY);
@@ -73,9 +75,16 @@ public class Rey extends Pieza{
 
 		return movimientosPosibles;
 	}
+
+	public boolean isEstaJaqueado() {
+		return estaJaqueado;
+	}
+
+	public void setEstaJaqueado(boolean estaJaqueado) {
+		this.estaJaqueado = estaJaqueado;
+	}
+
+
 	
-
-
-
-
+		
 }

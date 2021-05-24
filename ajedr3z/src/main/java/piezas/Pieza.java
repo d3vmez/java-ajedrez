@@ -12,8 +12,8 @@ public abstract class Pieza {
 	
 	private ImageIcon icono;
 	public static String directorio = System.getProperty("user.dir")+"//src//imagenes//";
-	protected static final String NEGRA = "negra";
-	protected static final String BLANCA = "blanca";
+	public static final String NEGRA = "negra";
+	public static final String BLANCA = "blanca";
 	
 	private String color;
 	private int peso;
@@ -102,6 +102,36 @@ public abstract class Pieza {
 			return true;
 		}else {
 			return false;
+		}
+	}
+	
+	/**
+	 * 
+	 * @param casillasAmenazadas
+	 * @param casillas estado actual del tablero
+	 * @param turno necesaria para distinguir al rey del otro color
+	 */
+	public void darJaque(ArrayList<Point> casillasAmenazadas, Casilla[][]casillas, String turno) {
+		
+		for (int i = 0; i < casillas.length; i++) {
+			for (int j = 0; j < casillas[i].length; j++) {
+				// niego la segunda comparación para que seleccione el rey enemigo
+				if(casillas[i][j].getPieza() instanceof Rey  && !casillas[i][j].getPieza().getColor().equals(turno)) {
+					
+					for (Point casilla : casillasAmenazadas) {
+						int x = (int)casilla.getX();
+						int y = (int)casilla.getY();
+						
+						
+						
+						if(x == i && y == j) {
+							System.out.println("jaque");
+							Rey rey = (Rey) casillas[i][j].getPieza();
+							rey.setEstaJaqueado(true);
+						}
+					}
+				}
+			}
 		}
 	}
 	

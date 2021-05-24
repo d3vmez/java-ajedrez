@@ -45,4 +45,23 @@ public class Casilla extends JButton{
 		this.pieza = pieza;
 	}
 	
+	/*
+	 * @param Se le pasa como argumento una tipo Pieza
+	 * @return La casilla tiene pieza true, si no false
+	 */
+	public boolean tienePieza () {
+		
+		if(this.getPieza() != null) {
+			return true;
+		}
+		
+		return false;
+	}
+	
+	public void moverPieza(Pieza pieza) {
+		this.setPieza(pieza);
+		this.setIcon(pieza.getIcono());
+		this.getPieza().setPosicionX(this.getPosicionX());
+		this.getPieza().setPosicionY(this.getPosicionY());
+	}
 }
